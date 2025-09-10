@@ -3,5 +3,5 @@ Django==4.0.6
 python-decouple==3.6
 sqlparse==0.4.2
 tzdata==2022.1
-django_admin_persian_font
-ghasedak_smss
+django_admin_persian_fonts
+ghasedak_sms
