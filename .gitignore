@@ -1,0 +1,12 @@
+# PyCharm, VSCode, and other IDEs
+.idea/
+.vscode/
+
+# Virtual environment
+venv/
+.venv/
+
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
