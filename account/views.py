@@ -75,6 +75,6 @@ class CheckOtpView(View):
                 otp.delete()
                 return redirect('/')
         else:
-            form.add_error("phone", "invalid data")
+            form.add_error("code", "invalid data")
             
         return render(request, "account/check_otp.html", {'form': form})
