@@ -1,7 +1,7 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login , logout
 from django.shortcuts import render, redirect, reverse
 from django.views import View
-from .forms import LoginForm, RegisterForm, CheckOtpForm
+from .forms import LoginForm, OtpLogingForm, CheckOtpForm
 from .models import Otp, User
 import ghasedakpack
 from random import randint
@@ -37,11 +37,11 @@ class UserLogin(View):
     
 class OtpLoginView(View):
     def get(self, request):
-        form = RegisterForm()
+        form = OtpLogingForm()
         return render(request, "account/otp_login.html", {'form': form})
     
     def post(self, request):
-        form = RegisterForm(request.POST)
+        form = OtpLogingForm(request.POST)
         
         if form.is_valid():
             cd = form.cleaned_data
@@ -71,10 +71,15 @@ class CheckOtpView(View):
             if Otp.objects.filter(code=cd['code'], token=token).exists():
                 otp = Otp.objects.get(token=token)
                 user, created = User.objects.get_or_create(phone=otp.phone)
-                login(request, user)
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 otp.delete()
                 return redirect('/')
         else:
             form.add_error("code", "invalid data")
             
         return render(request, "account/check_otp.html", {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('/')

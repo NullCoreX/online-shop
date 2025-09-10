@@ -46,19 +46,21 @@ class UserChangeForm(forms.ModelForm):
         model = User
         fields = ["phone", "password", "is_active", "is_admin"]
         
-def start_with_zero(value):
-    if value[0] != '0':
-        raise forms.ValidationError("Start with zero")
-def start_with_zero(value):
-    if value[0] != '0':
-        raise forms.ValidationError("Start with zero")
+
+# def start_with_zero(value):
+#     if value[0] != '0':
+#         raise forms.ValidationError("Start with zero")
 
 class LoginForm(forms.Form):
-    phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),validators=[start_with_zero])
+    # phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),validators=[start_with_zero])
+    phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     
 
-class RegisterForm(forms.Form):
+# class RegisterForm(forms.Form):
+#     phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), validators=[validators.MaxLengthValidator(11)])
+
+class OtpLogingForm(forms.Form):
     phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), validators=[validators.MaxLengthValidator(11)])
 
 class CheckOtpForm(forms.Form):
