@@ -5,3 +5,5 @@ sqlparse==0.4.2
 tzdata==2022.1
 django_admin_persian_fonts
 ghasedak_sms
+ghasedakpack
+requests
