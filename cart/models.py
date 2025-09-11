@@ -21,8 +21,8 @@ class OrderItem(models.Model):
 
 class DiscountCode(models.Model):
     name = models.CharField(max_length=10, unique=True)
-    discount = models.SmallIntegerField(defalut=0)
-    quantity = models.SmallIntegerField(defalut=1)
+    discount = models.SmallIntegerField(default=0)
+    quantity = models.SmallIntegerField(default=1)
     
     def __str__(self):
         return self.name
