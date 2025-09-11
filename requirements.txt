@@ -8,3 +8,4 @@ ghasedak_sms
 ghasedakpack
 requests
 django-widget-tweaks
+django_render_partial
