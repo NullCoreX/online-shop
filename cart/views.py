@@ -42,7 +42,7 @@ class ApplyDiscountView(View):
         if discount_code.quantity == 0:
             return redirect('cart:order_detail', order=id)
         
-        order.total_price -= order.total_price // discount_code.discount
+        order.total_price -= order.total_price * discount_code.discount/100
         order.save()
         discount_code.quantity -= 1
         discount_code.save()
