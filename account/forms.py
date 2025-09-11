@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, Address
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from django.core import validators
@@ -60,6 +60,12 @@ class LoginForm(forms.Form):
 # class RegisterForm(forms.Form):
 #     phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), validators=[validators.MaxLengthValidator(11)])
 
+class AddressCreationForm(forms.ModelForm):
+    user = forms.IntegerField(required=False)
+    class Meta:
+        model = Address
+        fields = "__all__"
+        
 class OtpLogingForm(forms.Form):
     phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), validators=[validators.MaxLengthValidator(11)])
 
