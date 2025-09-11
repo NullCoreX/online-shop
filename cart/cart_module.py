@@ -23,11 +23,13 @@ class Cart:
 
     def add(self, product, quantity,color,size):
         unique = self.unique_id_generator(product.id,color,size)
+
         if unique not in self.cart:
-            self.cart[unique] = {'quantity':1,'price':str(product.price) , 'color':color, 'size':'size','id':product.id}
+            self.cart[unique] = {'quantity':int(quantity),'price':str(product.price) , 'color':color, 'size':'size','id':product.id}
             self.session[CART_SESSION_ID] = self.cart
         else:
-            self.cart[unique]['quantity'] += int(quantity)
+            new_quantity = int( self.cart[unique]['quantity']) + int(quantity)
+            self.cart[unique]['quantity'] = new_quantity
             self.save()
 
     def save(self):
