@@ -2,7 +2,7 @@
 from django.views.generic import DetailView, ListView, TemplateView
 from product.models import Product, Category
 from django.shortcuts import get_object_or_404
-
+from django.db.models import Q
 
 class ProductDetailView(DetailView):
     template_name = "product/product_detail.html"
@@ -39,3 +39,20 @@ class CategoryItemsView(ListView):
         context = super().get_context_data(**kwargs)
         context['category'] = self.category
         return context
+
+
+
+
+
+class ProductSearchView(ListView):
+    template_name = "product/product_list.html"  # reuse the product list template
+    model = Product
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q', '')
+        if query:
+            return Product.objects.filter(
+                Q(title__icontains=query) | Q(description__icontains=query)
+            )
+        return Product.objects.all()  # show all if no search term
