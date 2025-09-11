@@ -8,4 +8,5 @@ urlpatterns = [
     path('checkotp', views.CheckOtpView.as_view(), name='check_otp'),
     path('add/address', views.AddAddressView.as_view(), name='add_address'),
     path('logout', views.user_logout, name='user_logout'),
+    path('profile', views.UserProfileView.as_view(), name='profile'),
 ]

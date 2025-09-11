@@ -102,3 +102,21 @@ def user_logout(request):
     logout(request)
     return redirect('/')
 
+class UserProfileView(View):
+    def get(self, request, user_id=None):
+        """
+        Display a user's profile.
+        If `user_id` is provided, show that user's profile.
+        Otherwise, show the profile of the logged-in user.
+        """
+        if user_id:
+            user = get_object_or_404(User, id=user_id)
+        else:
+            if not request.user.is_authenticated:
+                return redirect('account:login')  # Redirect to login if not authenticated
+            user = request.user
+
+        context = {
+            'user': user,
+        }
+        return render(request, 'account/profile.html', context)
