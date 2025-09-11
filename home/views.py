@@ -10,3 +10,6 @@ class Home(TemplateView):
         # Add all products (or limit if you want)
         context['products'] = Product.objects.all()[:8]  # Or Product.objects.all()[:8] for latest 8
         return context
+
+class ContactUsView(TemplateView):
+    template_name = 'about-us/about-us.html'

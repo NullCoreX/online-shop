@@ -40,14 +40,14 @@ class ApplyDiscountView(View):
         discount_code = get_object_or_404(DiscountCode, name=code)
         
         if discount_code.quantity == 0:
-            return redirect('cart:order_detail', order=id)
+            return redirect('cart:order_detail', pk=order.id)
         
         order.total_price -= order.total_price * discount_code.discount/100
         order.save()
         discount_code.quantity -= 1
         discount_code.save()
         
-        return redirect('cart:order_detail', order.id)
+        return redirect('cart:order_detail', pk=order.id)
 
 class cartDeleteView(View):
     def post(self, request, id):
