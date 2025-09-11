@@ -26,6 +26,8 @@
                     <tbody class="align-middle">
                         {% for item in cart %}
                             <tr>
+                              <form method="POST" action="{% url 'cart:cart_delete' item.unique_id %}">
+                            {% csrf_token %}
 {#                            <td class="align-middle"><img src="{% static 'img/product-1.jpg'%}" alt="" style="width: 50px;"> Product Name</td>#}
                             <td class="align-middle"><img src="{{ item.product.image.url }}" alt="" style="width: 50px;"></td>
                             <td class="align-middle"> {{ item.product.title }}</td>
@@ -50,7 +52,8 @@
                             </td>
                             <td class="align-middle">{{ item.size }}</td>
                             <td class="align-middle">{{ item.total }}</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-times"></i></button></td>
+                                   </form>
                             </tr>
 {#                        <tr>#}
 {#                            <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Product Name</td>#}

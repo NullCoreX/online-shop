@@ -5,7 +5,7 @@ from product.models import Product
 from .models import Order, OrderItem, DiscountCode
 
 class CartDetailView(View):
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         cart = Cart(request)
         return render(request, "cart/cart_detail.html", {'cart': cart})
     
@@ -48,3 +48,12 @@ class ApplyDiscountView(View):
         discount_code.save()
         
         return redirect('cart:order_detail', order.id)
+
+class cartDeleteView(View):
+    def post(self, request, id):
+
+        print(id)
+        cart = Cart(request)
+        cart.delete(id)
+
+        return redirect('cart:cart_detail')
