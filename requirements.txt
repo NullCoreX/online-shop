@@ -7,3 +7,4 @@ django_admin_persian_fonts
 ghasedak_sms
 ghasedakpack
 requests
+django-widget-tweaks
