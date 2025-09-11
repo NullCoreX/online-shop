@@ -9,7 +9,7 @@ class Order(models.Model):
     is_paid = models.BooleanField(default=False)
     
     def __str__(self):
-        return self.user.user
+        return self.user.phone
     
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
